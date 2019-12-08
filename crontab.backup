@@ -1,0 +1,14 @@
+# Open the Firewall for VPN at Boot
+@reboot /root/open_vpn_firewall.sh &
+# Start the OpenVPN Server at Boot
+@reboot /bin/systemctl start openvpn-server@server
+# Check Our IPs and PortMappings at 5 after every hour
+5 * * * * /root/check_ip.py > /root/cron.log 2>&1
+# Restart Raspi at 5am every Sunday: 0 5 * * 0
+0 5 * * 0 /root/check_ip.py -r > /root/cron.log 2>&1
+# restart openvpn daily at 5:10am : 10 5
+10 5 * * * /root/check_ip.py -v > /root/cron.log 2>&1
+# clean the filesystem on the first day of each month at 4:55am
+55 4 1 * * /root/check_ip.py -c > /root/cron.log 2>&1
+# ultima fila añadida para SSL. restart SSL servce (stunnel4) 
+10 5 * * * /root/check_ip.py -s > /root/cron.log 2>&1
