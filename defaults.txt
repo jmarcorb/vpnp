@@ -1,0 +1,16 @@
+client
+remote 127.0.0.1 1194
+verb 1
+nobind
+mute 20
+dev tun
+compress lzo
+proto tcp
+persist-tun
+persist-key
+key-direction 1
+cipher AES-256-GCM
+remote-cert-tls server
+mute-replay-warnings
+resolv-retry infinite
+
