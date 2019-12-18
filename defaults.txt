@@ -4,6 +4,7 @@ verb 1
 nobind
 mute 20
 dev tun
+route 0.0.0.0 0.0.0.0 vpn_gateway
 proto tcp
 persist-tun
 persist-key
