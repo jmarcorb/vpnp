@@ -4,7 +4,6 @@ verb 1
 nobind
 mute 20
 dev tun
-compress lzo
 proto tcp
 persist-tun
 persist-key
