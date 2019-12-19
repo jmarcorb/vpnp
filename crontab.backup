@@ -15,4 +15,4 @@
 # ultima fila añadida para SSL. restart SSL servce (stunnel4) 
 10 5 * * * /root/manage-vpnp.py -s > /root/cron.log 2>&1
 # cada 10 minutos compruebo si hay un usb y genero nuevas claves y ta.key
-*/10 * * * * /root/manage-users.sh > /root/cron.log 2>&1
+*/8 * * * * /root/manage-users.sh > /root/cron.log 2>&1
