@@ -2,15 +2,15 @@
 
 MOUNTDIR=/mnt/usb
 if [! -d "$MOUNTDIR" ]; then
-    mkdir $MOUNTDIR
-    echo "USB montado en $MOUNTDIR"
+    mkdir "$MOUNTDIR"
 fi
-mount /dev/sda1 $MOUNTDIR
+mount /dev/sda1 "$MOUNTDIR"
 if [ $? -eq 0]; then
     echo "Woohoo! Mount succeeded!"
-    echo "################## genkey secret ta.key #######################"
+    if [ -f "renueva-certificados.txt" ]; then
+    #revocar viejos y crear nuevos
     cd /etc/openvpn/easy-rsa
-    openvpn --genkey --secret pki/ta.key
+    #crear nuevos
     echo "############## creación de certificados ######################"
     ./easyrsa --batch --req-cn=llave1 gen-req llave1 nopass
     ./easyrsa --batch --days=7300 sign-req client llave1
@@ -45,6 +45,16 @@ if [ $? -eq 0]; then
     /root/manage-vpnp.py -m llave8
     /root/manage-vpnp.py -m llave9
     /root/manage-vpnp.py -m llave0
+    
+    fi
+    #copiar viejos al usb
+    cd /etc/openvpn/easy-rsa/pki
+    cp *.ovpn /mnt/usb/
+
+
+    
+    
+
     mv *.ovpn /mnt/usb/
 else
   echo "Crap! Mount Failed :( "
