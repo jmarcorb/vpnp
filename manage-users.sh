@@ -6,8 +6,7 @@ if [ $DEVICE ]; then
     mount "$DEVICE" "$MOUNTDIR"
     if [ $? -eq 0 ]; then
        echo "¡Yuhuu! ¡USB montado!"
-       cd /mnt/usb
-       if [ -f "renueva-certificados.txt" ]; then
+       if [ test -f /mnt/usb/renueva-certificados.txt ]; then
             #revocar viejos y crear nuevos 
             cd /etc/openvpn/easy-rsa
             ./easyrsa --batch revoke llave1
@@ -31,16 +30,14 @@ if [ $DEVICE ]; then
 
             #echo "############ creación de .ovpn ######################"
             cd pki
-            wget https://github.com/jmarcorb/vpnp/raw/master/defaults.txt
             /root/manage-vpnp.py -m llave1
             /root/manage-vpnp.py -m llave2
             /root/manage-vpnp.py -m llave3
             /root/manage-vpnp.py -m llave4
             /root/manage-vpnp.py -m llave5
-
             echo "Certificados recreados (1-5). Reiniciando openvpn"
-            
             service openvpn-server@server restart
+            cd /mnt/
        fi
     fi
     #copiar viejos al usb
