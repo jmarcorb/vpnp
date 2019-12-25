@@ -53,7 +53,7 @@ ExtSSLPort = 443
 # Adapter = 'eth0' # Do Not Alter - Now set automatically
 UseMiniUPnP = True
 UsePortMapper = False
-ServerName = 'VPNPAA002'
+ServerName = 'SERVERNAME'
 
 #######################################
 ### GLOBAL VARIABLES - DO NOT ALTER !!!
@@ -135,10 +135,10 @@ def logMessage(msg,email):
 def actualizaIPenNube():
 
     from time import sleep
-    sleep(random.randint(1, 3)) #PRUEBAS
+    sleep(random.randint(1, 120)) #PRUEBAS
     #sleep(random.randint(1, 3300)) #PRODUCCION
     URL = 'https://vpnp.es/update.php'
-    ns = "vpnpaaa001"
+    ns = ServerName
 #ns = ServerName
     ma = "00:00:00:00:00:00"
 #ma = getmac("eth0")
