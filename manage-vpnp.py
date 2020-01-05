@@ -481,7 +481,7 @@ def updateExtConfig():
         PARAMS = {'ns':ns}
         r = requests.get(url = URL, params = PARAMS)
         if r != ExternalIP:
-            msg += "Actualizo IP del servidor casero en vpnp.es. Antigua: "+ r.$
+            msg += "Actualizo IP del servidor casero en vpnp.es. Antigua: "+ r.text +" Nueva: "+ExternalIP
             actualizaIPenNube()
             logMessage(msg,False)
         else:
