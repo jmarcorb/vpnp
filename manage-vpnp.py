@@ -476,19 +476,17 @@ def updateExtConfig():
         # Upgate Defaults.txt file
         if os.path.isfile(DefaultsTxt):
             updateFile(DefaultsTxt,OldExternalIP,ExternalIP,DefExternalIP)
-    else:
         URL = 'https://vpnp.es/getip.php'
-        ns = "vpnpaaa001"
-        #ns = ServerName
+        ns = ServerName
         PARAMS = {'ns':ns}
         r = requests.get(url = URL, params = PARAMS)
-
         if r != ExternalIP:
-            msg += "Actualizo IP del servidor casero. Antigua: "+ r.text +" Nueva: "+ExternalIP
+            msg += "Actualizo IP del servidor casero en vpnp.es. Antigua: "+ r.$
             actualizaIPenNube()
+            logMessage(msg,False)
         else:
-             msg += "No"
-             logMessage(msg,False)
+            msg += "No actualizo en vpnp.es"
+            logMessage(msg,False)
 
 #################################################################
 ### createEMailMsg - Create & Send email if any changes or errors
