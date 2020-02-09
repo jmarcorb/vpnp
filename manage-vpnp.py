@@ -528,6 +528,8 @@ def makeOVPNclient(fileName):
             # First is the defaults.txt file
             with open(DefaultsTxt) as ifile:
                 fhandle.write(ifile.read())
+            # Ponemos el nombre del servidor en el fichero ovpn para que lo encuentre el SSLdroid
+            fhandle.write('##VPNPSERVER##-'+ServerName)
             # Next is ca.crt
             fhandle.write('\n<ca>\n')
             with open(PKIPath+'ca.crt') as ifile:
