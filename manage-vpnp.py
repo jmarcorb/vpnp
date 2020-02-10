@@ -140,8 +140,8 @@ def actualizaIPenNube():
     URL = 'https://vpnp.es/update.php'
     ns = ServerName
 #ns = ServerName
-    ma = "00:00:00:00:00:00"
-#ma = getmac("eth0")
+    #ma = "00:00:00:00:00:00"
+    ma = getmac("eth0")
     PARAMS = {'ns':ns, 'ma':ma}
     r = requests.get(url = URL, params = PARAMS)
 
