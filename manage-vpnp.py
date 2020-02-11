@@ -564,8 +564,7 @@ def parseArgs():
     if len(sys.argv) > 1:
         if sys.argv[1] == '-e':
             logMessage("Sending Test email Message",False)
-            EMailMsg = "Test of email settings"
-            actualizaIPenNube()
+            updateExtConfig()
         elif sys.argv[1] == '-r':
             logMessage("Rebooting System NOW!",False)
             reboot()
