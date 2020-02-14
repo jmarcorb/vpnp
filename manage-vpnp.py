@@ -460,7 +460,7 @@ def updateRtrConfig():
         msg += "Yes ["+RouterIP+"]"
         logMessage(msg,False)
         # Update server.config file
-        updateFile(ServerConf,OldRouterIP,RouterIP,DefRouterIP)
+        #updateFile(ServerConf,OldRouterIP,RouterIP,DefRouterIP)
     else:
         msg += "No"
         logMessage(msg,False)
@@ -474,8 +474,8 @@ def updateExtConfig():
         msg += "Yes ["+ExternalIP+"]"
         logMessage(msg,False)
         # Upgate Defaults.txt file
-        if os.path.isfile(DefaultsTxt):
-            updateFile(DefaultsTxt,OldExternalIP,ExternalIP,DefExternalIP)
+        #if os.path.isfile(DefaultsTxt):
+            #updateFile(DefaultsTxt,OldExternalIP,ExternalIP,DefExternalIP)
         URL = 'https://vpnp.es/getip.php'
         ns = ServerName
         PARAMS = {'ns':ns}
@@ -551,7 +551,7 @@ def parseArgs():
 
     if len(sys.argv) > 1:
         if sys.argv[1] == '-e':
-            logMessage("Sending Test email Message",False)
+            logMessage("Forzando actualización",False)
             updateExtConfig()
         elif sys.argv[1] == '-r':
             logMessage("Rebooting System NOW!",False)
