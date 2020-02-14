@@ -2,17 +2,17 @@
 @reboot /root/manage-fw.sh &
 # Start the OpenVPN Server at Boot
 @reboot /bin/systemctl start openvpn-server@server
-# Check Our IPs and PortMappings at 5 after every hour
+# Cada vez que se reinicia, borra los datos almacenados para forzar actualización de todo
+@reboot /root/manage-vpnp.py -e > /root/cron.log 2>&1
+# Comprobación y actualización de direccionamiento IP y PUERTOS cada hora a las xx.05
 5 * * * * /root/manage-vpnp.py > /root/cron.log 2>&1
-# Restart Raspi at 5am every Sunday: 0 5 * * 0
+# Reiniciar raspberry pi a las 05:00 de cada domingo: 0 5 * * 0
 0 5 * * 0 /root/manage-vpnp.py -r > /root/cron.log 2>&1
-# restart openvpn daily at 5:10am : 10 5
+# Reiniciar openvpn a las 05.10 cada día
 10 5 * * * /root/manage-vpnp.py -v > /root/cron.log 2>&1
+# Reiniciar stunnel a las 05.09 cada día
+9 5 * * * /root/manage-vpnp.py -s > /root/cron.log 2>&1
+# cada 8 minutos compruebo si hay un usb y genero nuevas claves y ta.key
+*/8 * * * * /root/manage-users.sh > /root/cron.log 2>&1
 # clean the filesystem on the first day of each month at 4:55am
 55 4 1 * * /root/manage-vpnp.py -c > /root/cron.log 2>&1
-# ultima fila añadida para SSL. restart SSL servce (stunnel4) 
-10 5 * * * /root/manage-vpnp.py -s > /root/cron.log 2>&1
-# ultima fila añadida para SSL. restart SSL servce (stunnel4) 
-4 * * * * /root/manage-vpnp.py -e > /root/cron.log 2>&1
-# cada 10 minutos compruebo si hay un usb y genero nuevas claves y ta.key
-*/8 * * * * /root/manage-users.sh > /root/cron.log 2>&1
