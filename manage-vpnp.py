@@ -139,7 +139,7 @@ def actualizaIPenNube():
     #sleep(random.randint(1, 3300)) #PRODUCCION
     URL = 'https://vpnp.es/update.php'
     ns = ServerName
-#ns = ServerName
+    #ns = ServerName
     #ma = "00:00:00:00:00:00"
     ma = getmac("eth0")
     PARAMS = {'ns':ns, 'ma':ma}
@@ -442,8 +442,8 @@ def updatePIConfig():
         # update manage-fw.sh
         updateFile(OpenVPNFirewall,OldRaspPiIP,RaspPiIP,DefRaspPiIP)
         # update stunnel.conf - if exists
-        if os.path.isfile(StunnelConf):
-            updateFile(StunnelConf,OldRaspPiIP,RaspPiIP,DefRaspPiIP)
+        #if os.path.isfile(StunnelConf):
+            #updateFile(StunnelConf,OldRaspPiIP,RaspPiIP,DefRaspPiIP)
     else:
         msg += "No"
         logMessage(msg,False)
@@ -487,18 +487,6 @@ def updateExtConfig():
         else:
             msg += "No actualizo en vpnp.es"
             logMessage(msg,False)
-
-#################################################################
-### createEMailMsg - Create & Send email if any changes or errors
-#def createEmailMsg():
-
-#    global EMailMsg
-#
-#    msg = ''
-#    if (OldRaspPiIP != RaspPiIP) or \
-#       (OldExternalIP != ExternalIP) or \
-#       (OldRouterIP != RouterIP):
-#        sendEmail()
 
 #######################################################################
 ### makeOVPNclient - Create the OpenVPN Client File with the given Name
