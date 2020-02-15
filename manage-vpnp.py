@@ -551,7 +551,7 @@ def parseArgs():
 
     if len(sys.argv) > 1:
         if sys.argv[1] == '-e':
-            logMessage("Forzando actualización",False)
+            logMessage("Forzando actualizacion",False)
             updateExtConfig()
         elif sys.argv[1] == '-r':
             logMessage("Rebooting System NOW!",False)
